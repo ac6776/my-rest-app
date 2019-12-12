@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>transition</title>
+    <script src="/webjars/jquery/jquery.min.js"></script>
+    <script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
+    <!-- <link rel="stylesheet" href="/webjars/font-awesome/css/all.min.css" /> -->
+    <script src="https://kit.fontawesome.com/67162edaed.js" crossorigin="anonymous"></script>
+    <style>
+      .popup::before {
+        opacity: 0;
+      }
+      .popup {
+        position: absolute;
+        opacity: 1;
+        transition: all 2s;
+      }
+    </style>
+  </head>
+  <body>
+
+      <button type="button" class="btn btn-primary" value="alert" onclick="$().alert('fade')">Alert</button>
+
+    <div class="popup">
+      <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>Holy guacamole!</strong> You should check in on some of those fields below.
+        <ul style="display: inline-block;">
+          <li style="display: inline-block;">
+            <button type="button" class="close"> 
+                <i class="fas fa-pen"></i>
+              </button>
+          </li>
+        </div>
+        <li style="display: inline-block;">
+          <button type="button" class="close" value="Edit">
+           <i class="fas fa-times"></i>
+          </button>
+        </li>
+      </ul>
+    </div>
+
+    <script>
+      $(".alert").alert();
+
+      
+    </script>
+  </body>
+</html>

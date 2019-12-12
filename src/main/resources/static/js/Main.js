@@ -33,7 +33,7 @@ Vue.component('messages-list', {
         '<div>' +
             '<input-message :messages="messages" />' +
             '<ul class="list-unstyled">' + 
-                '<li v-for="message in messages">{{ message.id }} {{ message.msg }}</li>' + 
+                '<li class="alert alert-primary" v-for="message in messages">{{ message.id }} {{ message.msg }}</li>' + 
             '</ul>' +
         '</div>',
     created: function() {

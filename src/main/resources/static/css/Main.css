@@ -1,0 +1,7 @@
+.popup::before {
+  opacity: 0;
+}
+.popup {
+  opacity: 1;
+  transition: 2s ease-in;
+}
