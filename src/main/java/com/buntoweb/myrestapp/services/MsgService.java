@@ -8,7 +8,6 @@ import javax.annotation.PostConstruct;
 import com.buntoweb.myrestapp.entities.MyMessage;
 
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
 
 @Service
 public class MsgService {
