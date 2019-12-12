@@ -1,50 +1,72 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8" />
-    <title>transition</title>
-    <script src="/webjars/jquery/jquery.min.js"></script>
-    <script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
-    <!-- <link rel="stylesheet" href="/webjars/font-awesome/css/all.min.css" /> -->
-    <script src="https://kit.fontawesome.com/67162edaed.js" crossorigin="anonymous"></script>
-    <style>
-      .popup::before {
-        opacity: 0;
-      }
-      .popup {
-        position: absolute;
-        opacity: 1;
-        transition: all 2s;
-      }
-    </style>
-  </head>
-  <body>
 
-      <button type="button" class="btn btn-primary" value="alert" onclick="$().alert('fade')">Alert</button>
+<head>
+  <meta charset="utf-8" />
+  <title>transition</title>
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+    crossorigin="anonymous"></script>
+  <script src="https://kit.fontawesome.com/67162edaed.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
 
-    <div class="popup">
-      <div class="alert alert-warning alert-dismissible fade show" role="alert">
-        <strong>Holy guacamole!</strong> You should check in on some of those fields below.
-        <ul style="display: inline-block;">
-          <li style="display: inline-block;">
-            <button type="button" class="close"> 
-                <i class="fas fa-pen"></i>
-              </button>
-          </li>
-        </div>
+<body>
+  <div class="container">
+    <h1>Test Page</h1>
+    
+    <div class="input-group mb-3">
+      <input type="text" class="form-control" placeholder="write new message here..." />
+      <div class="input-group-append">
+        <input type="button" value="save" class="btn btn-primary" />
+      </div>
+    </div>
+    <div class="row" style="margin-bottom: 1rem;">
+      <div class="col-8 input-group alert alert-primary alert-dismissible" style="margin-bottom: 0rem;" role="alert">
+        A simple primary alert—check it out!
+      </div>
+      <div class="col-4 input-group-append">
+        <button class="btn btn-outline-secondary" type="button">Edit</button>
+        <button class="btn btn-outline-secondary" type="button">&times;</button>
+      </div>
+    </div>
+    
+
+    <div class="alert alert-primary alert-dismissible" role="alert">
+      A simple primary alert—check it out!
+      <ul class="list-unstyled" style="display: block; float: right;">
         <li style="display: inline-block;">
-          <button type="button" class="close" value="Edit">
-           <i class="fas fa-times"></i>
+          <button type="button" class="" >
+            <span aria-hidden="true">&times;</span>
+          </button>  
+        </li>
+        <li style="display: inline-block; float: right;">
+          <button type="button" class="close" >
+            <span aria-hidden="true">&times;</span>
           </button>
         </li>
+
       </ul>
     </div>
 
-    <script>
-      $(".alert").alert();
+    <div class="alert alert-primary alert-dismissible fade show" role="alert">
+      A simple primary alert—check it out!
+      <button type="button" class="close" >
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+  </div>
 
-      
-    </script>
-  </body>
+  <script>
+
+  </script>
+</body>
+
 </html>
