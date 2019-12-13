@@ -27,27 +27,42 @@ Vue.component("input-message", {
     }
   });
 
-// Vue.component('message-row', {
-//     props: ['message'],
-//     template: '<div>{{ message.id }} {{ message.msg }}</div>'
-// })
+Vue.component('message-row', {
+    props: ['message', 'messages'],
+    template:
+        '<div class="message">' + 
+            '<div>{{ message.id }} {{ message.msg }}</div>' + 
+            '<button class="btn btn-primary button" type="button" v-on:click="edit">' +
+                '<i class="fas fa-pen"></i>' +
+            '</button>' +
+            '<button class="btn btn-primary button" type="button" v-on:click="del">' +
+                ' <i class="fas fa-times"></i>' +
+            '</button>' +
+        '</div>',
+    data: function (){
+        return {
+            msg: ''
+        }
+    },
+    methods: {
+        edit: function() {
+            // this.editMethod(this.message);
+            alert(this.message.msg)
+        },
+        del: function() {
+            messageApi.remove({id : this.message.id}).then(result => {
+                console.log(result)
+            })
+        }
+    }
+})
 
 Vue.component('messages-list', {
     props: ['messages'],
     template: 
         '<div>' +
             '<input-message :messages="messages" />' +
-            '<div class="message" v-for="message in messages">' + 
-                '<div>{{ message.id }} {{ message.msg }}</div>' + 
-                '<div>' +
-                '<button class="btn btn-primary button" type="button">' +
-                  '<i class="fas fa-pen"></i>' +
-                '</button>' +
-                '<button class="btn btn-primary button" type="button">' +
-                 ' <i class="fas fa-times"></i>' +
-                '</button>' +
-              '</div>' +
-            '</div>' +
+            '<message-row v-for="message in messages" v-bind:key="message.id" :message="message" :messages="messages" />' +
         '</div>',
     created: function() {
         messageApi.get().then(result => 

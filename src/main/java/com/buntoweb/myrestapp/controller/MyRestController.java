@@ -6,7 +6,9 @@ import com.buntoweb.myrestapp.entities.MyMessage;
 import com.buntoweb.myrestapp.services.MsgService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -36,5 +38,10 @@ public class MyRestController {
     @PutMapping("/msg")
     public MyMessage editMsg(@RequestBody MyMessage msg) {
         return msgService.editMsg(msg);
+    }
+
+    @DeleteMapping("/msg/{id}") 
+    public MyMessage deleteMsg(@PathVariable int id) {
+        return msgService.removeMsg(id);
     }
 }

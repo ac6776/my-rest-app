@@ -20,15 +20,22 @@ public class MsgService {
 
     @PostConstruct
     public void init() {
-        this.counter = 0;
+        this.counter = 10;
         msgList = new ArrayList<MyMessage>();
         msgList.add(new MyMessage(this.counter++, "Hello"));
         msgList.add(new MyMessage(this.counter++, "GoodBye"));
         msgList.add(new MyMessage(this.counter++, "Cheers"));
     }
 
-    public void removeMsg(int id) {
-        msgList.remove(id);
+    public MyMessage removeMsg(int id) {
+        for (int i = 0; i < msgList.size(); i++) {
+            if (msgList.get(i).getId() == id){
+                counter--;
+                System.out.println("removed: "  + msgList.get(i).getId() + " " + msgList.get(i).getMsg());
+                return msgList.remove(i);
+            }
+        }
+        return null;
     }
 
     public MyMessage editMsg(MyMessage msg) {
@@ -42,7 +49,7 @@ public class MsgService {
     public MyMessage addMsg(MyMessage msg) {
         msg.setId(counter++);
         msgList.add(msg);
-        System.out.println(msg.getId() + " " + msg.getMsg());
+        System.out.println("added: " + msg.getId() + " " + msg.getMsg());
         return msgList.get(msgList.size() - 1);
     }
 }
