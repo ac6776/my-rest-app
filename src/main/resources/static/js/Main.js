@@ -27,13 +27,18 @@ Vue.component("input-message", {
     }
   });
 
+// Vue.component('message-row', {
+//     props: ['message'],
+//     template: '<div>{{ message.id }} {{ message.msg }}</div>'
+// })
+
 Vue.component('messages-list', {
     props: ['messages'],
     template: 
         '<div>' +
             '<input-message :messages="messages" />' +
-            '<div class="message">' + 
-                '<div v-for="message in messages">{{ message.id }} {{ message.msg }}</div>' + 
+            '<div class="message" v-for="message in messages">' + 
+                '<div>{{ message.id }} {{ message.msg }}</div>' + 
                 '<div>' +
                 '<button class="btn btn-primary button" type="button">' +
                   '<i class="fas fa-pen"></i>' +
