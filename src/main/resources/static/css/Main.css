@@ -1,7 +1,38 @@
-.popup::before {
+/* .popup::before {
   opacity: 0;
 }
 .popup {
   opacity: 1;
   transition: 2s ease-in;
+} */
+
+.message {
+  display: flex;
+  margin-bottom: 1rem !important;
+}
+
+.message div:last-child {
+  display: flex;
+}
+
+.message div:first-child {
+  flex: 1 1 0%;
+  padding: 0.75rem 1.25rem;
+  color: #004085;
+  background-color: #cce5ff;
+  border-color: #b8daff;
+  border: 1px solid transparent;
+  border-top-left-radius: 0.25rem;
+  border-bottom-left-radius: 0.25rem;
+}
+
+.button {
+  border-radius: 0;
+  width: 3rem;
+}
+
+button:last-child {
+  border-top-right-radius: 0.25rem;
+  border-bottom-right-radius: 0.25rem;
+  border-left: none;
 }

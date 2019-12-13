@@ -11,7 +11,7 @@ Vue.component("input-message", {
         '<div class="input-group mb-3">' +
             '<input type="text" class="form-control" placeholder="write new message here..." v-model="msg"/>' +
             '<div class="input-group-append">' +
-                '<input type="button" value="save" v-on:click="save" class="btn btn-primary"/>' +
+                '<input type="button" value="save" v-on:click="save" class="btn btn-danger"/>' +
             '</div>' +
         '</div>',
     methods: {
@@ -32,9 +32,17 @@ Vue.component('messages-list', {
     template: 
         '<div>' +
             '<input-message :messages="messages" />' +
-            '<ul class="list-unstyled">' + 
-                '<li class="alert alert-primary" v-for="message in messages">{{ message.id }} {{ message.msg }}</li>' + 
-            '</ul>' +
+            '<div class="message">' + 
+                '<div v-for="message in messages">{{ message.id }} {{ message.msg }}</div>' + 
+                '<div>' +
+                '<button class="btn btn-primary button" type="button">' +
+                  '<i class="fas fa-pen"></i>' +
+                '</button>' +
+                '<button class="btn btn-primary button" type="button">' +
+                 ' <i class="fas fa-times"></i>' +
+                '</button>' +
+              '</div>' +
+            '</div>' +
         '</div>',
     created: function() {
         messageApi.get().then(result => 
