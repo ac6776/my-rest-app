@@ -1,5 +1,13 @@
 var messageApi = Vue.resource('http://localhost:8080/api/msg{/id}')
 
+function getId(message, messages) {
+    for (let i = 0; i < messages.length; i++) {
+        if (messages[i].id === message.id)
+        return i;        
+    }
+    return -1;
+}
+
 Vue.component("input-message", {
     props: ['messages'],
     data: function(){
@@ -51,7 +59,8 @@ Vue.component('message-row', {
         },
         del: function() {
             messageApi.remove({id : this.message.id}).then(result => {
-                console.log(result)
+                this.msg = result.body;
+                this.messages.splice(getId(this.msg, this.messages), 1);
             })
         }
     }
