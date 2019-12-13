@@ -20,7 +20,7 @@ public class MsgService {
 
     @PostConstruct
     public void init() {
-        this.counter = 10;
+        this.counter = 0;
         msgList = new ArrayList<MyMessage>();
         msgList.add(new MyMessage(this.counter++, "Hello"));
         msgList.add(new MyMessage(this.counter++, "GoodBye"));
