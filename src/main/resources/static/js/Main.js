@@ -9,10 +9,17 @@ function getId(message, messages) {
 }
 
 Vue.component("input-message", {
-    props: ['messages'],
+    props: ['messages', 'messageAttr'],
     data: function(){
         return { 
+            id: '',
             msg: ''
+        }
+    },
+    watch: {
+        messageAttr: function(newVal, oldVal) {
+            this.msg = newVal.msg;
+            this.id = newVal.id;
         }
     },
     template:
@@ -24,19 +31,31 @@ Vue.component("input-message", {
         '</div>',
     methods: {
         save: function() {
-            var message = { msg: this.msg }
-            messageApi.save({}, message).then(result => 
-                result.json().then(data =>
-                    this.messages.push(data)
-                )    
-            )
+            var message = { id: this.id, msg: this.msg }
+
+            if (this.id) {
+                messageApi.update({id: this.id}, message).then(result =>
+                    result.json().then(data => {
+                        console.log(data)
+                        var i = getId(data, this.messages)
+                        this.messages.splice(i, 1, data)
+                    })
+                )
+            } else {
+                messageApi.save({}, message).then(result => 
+                    result.json().then(data => {
+                        this.messages.push(data)
+                    })
+                )
+            }            
             this.msg = ''
+            this.id = ''      
         }
     }
   });
 
 Vue.component('message-row', {
-    props: ['message', 'messages'],
+    props: ['message', 'messages', 'editMessage'],
     template:
         '<div class="message">' + 
             '<div>{{ message.id }} {{ message.msg }}</div>' + 
@@ -55,7 +74,7 @@ Vue.component('message-row', {
     methods: {
         edit: function() {
             // this.editMethod(this.message);
-            alert(this.message.msg)
+            this.editMessage(this.message)
         },
         del: function() {
             messageApi.remove({id : this.message.id}).then(result => {
@@ -68,10 +87,15 @@ Vue.component('message-row', {
 
 Vue.component('messages-list', {
     props: ['messages'],
+    data: function(){
+        return {
+            message: null
+        }
+    },
     template: 
         '<div>' +
-            '<input-message :messages="messages" />' +
-            '<message-row v-for="message in messages" v-bind:key="message.id" :message="message" :messages="messages" />' +
+            '<input-message :messages="messages" :messageAttr="message"/>' +
+            '<message-row v-for="message in messages" v-bind:key="message.id" :message="message" :messages="messages" :editMessage="editMessage"/>' +
         '</div>',
     created: function() {
         messageApi.get().then(result => 
@@ -79,6 +103,11 @@ Vue.component('messages-list', {
                 data.forEach(message => this.messages.push(message))
             )
         )
+    },
+    methods: {
+        editMessage: function(message) {
+            this.message = message
+        }
     }
 })
 

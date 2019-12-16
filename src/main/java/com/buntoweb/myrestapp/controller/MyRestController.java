@@ -35,8 +35,8 @@ public class MyRestController {
         return msgService.addMsg(msg);
     }
 
-    @PutMapping("/msg")
-    public MyMessage editMsg(@RequestBody MyMessage msg) {
+    @PutMapping("/msg/{id}")
+    public MyMessage editMsg(@PathVariable int id, @RequestBody MyMessage msg) {
         return msgService.editMsg(msg);
     }
 

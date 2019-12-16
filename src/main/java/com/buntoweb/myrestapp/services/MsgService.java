@@ -20,7 +20,7 @@ public class MsgService {
 
     @PostConstruct
     public void init() {
-        this.counter = 0;
+        this.counter = 1;
         msgList = new ArrayList<MyMessage>();
         msgList.add(new MyMessage(this.counter++, "Hello"));
         msgList.add(new MyMessage(this.counter++, "GoodBye"));
@@ -30,7 +30,7 @@ public class MsgService {
     public MyMessage removeMsg(int id) {
         for (int i = 0; i < msgList.size(); i++) {
             if (msgList.get(i).getId() == id){
-                counter--;
+                // counter--;
                 System.out.println("removed: "  + msgList.get(i).getId() + " " + msgList.get(i).getMsg());
                 return msgList.remove(i);
             }
@@ -43,7 +43,9 @@ public class MsgService {
         for (i = 0; i < msgList.size(); i++) {
             if (msgList.get(i).getId() == msg.getId()) break;
         }
-        return msgList.set(i, msg);
+        msgList.set(i, msg);
+        System.out.println("edited: "  + msgList.get(i).getId() + " " + msgList.get(i).getMsg());
+        return msgList.get(i);
     }
 
     public MyMessage addMsg(MyMessage msg) {
